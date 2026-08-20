@@ -665,12 +665,12 @@ address a { color: var(--white); text-decoration-color: var(--cyan); }
 .feedback-collage {
   grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: 1.2fr .85fr .95fr;
-  grid-auto-rows: 150px;
-  gap: 14px;
-  align-items: start;
-  margin-top: 8px;
-  padding: clamp(14px, 3vw, 28px);
+  grid-template-columns: 1.2fr repeat(2, minmax(0, 1fr));
+  grid-auto-rows: clamp(140px, 16vw, 210px);
+  gap: 16px;
+  align-items: stretch;
+  margin-top: 10px;
+  padding: clamp(14px, 3vw, 26px);
   background: linear-gradient(135deg, rgba(255,255,255,.9), rgba(244,248,247,.96));
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -681,6 +681,7 @@ address a { color: var(--white); text-decoration-color: var(--cyan); }
   z-index: 1;
   margin: 0;
   overflow: hidden;
+  aspect-ratio: 4 / 3;
   background: var(--white);
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -696,8 +697,9 @@ address a { color: var(--white); text-decoration-color: var(--cyan); }
 .review-card.featured {
   grid-row: span 2;
   z-index: 5;
-  min-height: 305px;
-  transform: rotate(-1.4deg);
+  aspect-ratio: auto;
+  min-height: 0;
+  transform: none;
   border: 3px solid var(--gold);
 }
 .review-card.featured span {
@@ -714,24 +716,25 @@ address a { color: var(--white); text-decoration-color: var(--cyan); }
 }
 .review-card.product-proof {
   z-index: 4;
-  transform: rotate(1deg);
+  transform: none;
 }
 .review-card:nth-child(3) {
   z-index: 3;
-  transform: rotate(-.6deg);
+  transform: none;
 }
 .review-card:nth-child(4) {
   z-index: 2;
-  transform: rotate(.5deg);
+  transform: none;
 }
 .review-card.wide {
   grid-column: span 2;
   z-index: 4;
-  transform: rotate(-.3deg);
+  aspect-ratio: 16 / 9;
+  transform: none;
 }
 .review-card:nth-child(6) {
   z-index: 2;
-  transform: rotate(.6deg);
+  transform: none;
 }
 .quality-section + .process-section {
   border-top: 1px solid var(--line);
@@ -965,7 +968,7 @@ address a { color: var(--white); text-decoration-color: var(--cyan); }
   .feedback-layout { grid-template-columns: 1fr; }
   .feedback-collage {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-auto-rows: 180px;
+    grid-auto-rows: clamp(150px, 28vw, 220px);
     gap: 12px;
   }
   .review-card,
@@ -1006,5 +1009,8 @@ address a { color: var(--white); text-decoration-color: var(--cyan); }
   .feedback-gallery,
   .feedback-collage { grid-template-columns: 1fr; }
   .feedback-gallery { grid-auto-rows: 220px; }
-  .feedback-collage { grid-auto-rows: 210px; }
+  .feedback-collage { grid-auto-rows: auto; }
+  .review-card { aspect-ratio: 4 / 3; }
+  .review-card.featured,
+  .review-card.wide { aspect-ratio: 16 / 10; }
 }
