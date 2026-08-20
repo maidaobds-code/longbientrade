@@ -664,11 +664,9 @@ address a { color: var(--white); text-decoration-color: var(--cyan); }
 }
 .feedback-collage {
   grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: 1.2fr repeat(2, minmax(0, 1fr));
-  grid-auto-rows: clamp(140px, 16vw, 210px);
-  gap: 16px;
-  align-items: stretch;
+  position: relative;
+  display: block;
+  min-height: clamp(720px, 66vw, 920px);
   margin-top: 10px;
   padding: clamp(14px, 3vw, 26px);
   background: linear-gradient(135deg, rgba(255,255,255,.9), rgba(244,248,247,.96));
@@ -677,11 +675,10 @@ address a { color: var(--white); text-decoration-color: var(--cyan); }
   box-shadow: 0 22px 56px rgba(14, 24, 40, .1);
 }
 .review-card {
-  position: relative;
+  position: absolute;
   z-index: 1;
   margin: 0;
   overflow: hidden;
-  aspect-ratio: 4 / 3;
   background: var(--white);
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -695,11 +692,12 @@ address a { color: var(--white); text-decoration-color: var(--cyan); }
   background: var(--white);
 }
 .review-card.featured {
-  grid-row: span 2;
-  z-index: 5;
-  aspect-ratio: auto;
-  min-height: 0;
-  transform: none;
+  left: 3%;
+  top: 4%;
+  z-index: 20;
+  width: 42%;
+  height: 34%;
+  transform: rotate(-1.2deg);
   border: 3px solid var(--gold);
 }
 .review-card.featured span {
@@ -715,26 +713,84 @@ address a { color: var(--white); text-decoration-color: var(--cyan); }
   font-weight: 800;
 }
 .review-card.product-proof {
-  z-index: 4;
-  transform: none;
+  left: 42%;
+  top: 8%;
+  z-index: 8;
+  width: 26%;
+  height: 28%;
+  transform: rotate(1.4deg);
 }
 .review-card:nth-child(3) {
-  z-index: 3;
-  transform: none;
+  left: 65%;
+  top: 3%;
+  z-index: 7;
+  width: 29%;
+  height: 27%;
+  transform: rotate(-.8deg);
 }
 .review-card:nth-child(4) {
-  z-index: 2;
-  transform: none;
+  left: 48%;
+  top: 32%;
+  z-index: 9;
+  width: 32%;
+  height: 25%;
+  transform: rotate(.7deg);
 }
 .review-card.wide {
-  grid-column: span 2;
-  z-index: 4;
-  aspect-ratio: 16 / 9;
-  transform: none;
+  left: 7%;
+  top: 41%;
+  z-index: 6;
+  width: 48%;
+  height: 28%;
+  transform: rotate(-.5deg);
 }
 .review-card:nth-child(6) {
-  z-index: 2;
-  transform: none;
+  left: 72%;
+  top: 30%;
+  z-index: 5;
+  width: 22%;
+  height: 25%;
+  transform: rotate(1.1deg);
+}
+.review-card:nth-child(7) {
+  left: 2%;
+  top: 68%;
+  z-index: 4;
+  width: 28%;
+  height: 25%;
+  transform: rotate(.8deg);
+}
+.review-card:nth-child(8) {
+  left: 28%;
+  top: 66%;
+  z-index: 6;
+  width: 28%;
+  height: 25%;
+  transform: rotate(-.9deg);
+}
+.review-card:nth-child(9) {
+  left: 54%;
+  top: 59%;
+  z-index: 4;
+  width: 23%;
+  height: 28%;
+  transform: rotate(.6deg);
+}
+.review-card:nth-child(10) {
+  left: 73%;
+  top: 56%;
+  z-index: 6;
+  width: 24%;
+  height: 27%;
+  transform: rotate(-.7deg);
+}
+.review-card:nth-child(11) {
+  left: 38%;
+  top: 82%;
+  z-index: 3;
+  width: 34%;
+  height: 16%;
+  transform: rotate(.4deg);
 }
 .quality-section + .process-section {
   border-top: 1px solid var(--line);
@@ -967,9 +1023,11 @@ address a { color: var(--white); text-decoration-color: var(--cyan); }
   .contact-board { grid-template-columns: 1fr; }
   .feedback-layout { grid-template-columns: 1fr; }
   .feedback-collage {
+    display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-auto-rows: clamp(150px, 28vw, 220px);
     gap: 12px;
+    min-height: 0;
   }
   .review-card,
   .review-card.featured,
@@ -977,7 +1035,17 @@ address a { color: var(--white); text-decoration-color: var(--cyan); }
   .review-card:nth-child(3),
   .review-card:nth-child(4),
   .review-card.wide,
-  .review-card:nth-child(6) {
+  .review-card:nth-child(6),
+  .review-card:nth-child(7),
+  .review-card:nth-child(8),
+  .review-card:nth-child(9),
+  .review-card:nth-child(10),
+  .review-card:nth-child(11) {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
+    height: auto;
     grid-column: auto;
     grid-row: auto;
     min-height: 0;
