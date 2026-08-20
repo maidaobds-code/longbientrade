@@ -731,6 +731,15 @@ address a { color: var(--white); text-decoration-color: var(--cyan); }
   font-size: 20px;
   line-height: 1.25;
 }
+.contact-person {
+  display: inline-block;
+  width: fit-content;
+  padding-bottom: 8px;
+  color: #2db574;
+  border-bottom: 5px solid #2db574;
+  font-size: 24px;
+  font-weight: 800;
+}
 .company-contact span,
 .company-contact a {
   font-size: 16px;
