@@ -313,6 +313,19 @@ address {
 }
 address strong { color: var(--gold); font-size: 26px; }
 address a { color: var(--white); text-decoration-color: var(--cyan); }
+.contact-card {
+  margin-top: 18px;
+  padding: 18px;
+  color: var(--ink);
+  background: var(--white);
+  border-radius: 8px;
+}
+.contact-card h3 { color: var(--blue); }
+.contact-card p {
+  margin: 8px 0;
+  overflow-wrap: anywhere;
+}
+.contact-card b { color: var(--ink); }
 
 .to-top {
   position: fixed;
