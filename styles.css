@@ -501,7 +501,7 @@ address a { color: var(--white); text-decoration-color: var(--cyan); }
 .language-switcher {
   position: fixed;
   right: 18px;
-  top: 92px;
+  bottom: 76px;
   z-index: 40;
   display: grid;
   justify-items: end;
@@ -522,6 +522,9 @@ address a { color: var(--white); text-decoration-color: var(--cyan); }
   font-weight: 800;
 }
 .language-menu {
+  position: absolute;
+  right: 0;
+  bottom: 50px;
   display: grid;
   gap: 6px;
   padding: 8px;
