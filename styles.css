@@ -622,18 +622,10 @@ address a { color: var(--white); text-decoration-color: var(--cyan); }
 }
 .feedback-layout {
   display: grid;
-  grid-template-columns: 1.05fr .95fr;
+  grid-template-columns: 1fr;
   gap: clamp(18px, 3vw, 34px);
   align-items: start;
 }
-.feedback-proof {
-  overflow: hidden;
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  box-shadow: 0 22px 56px rgba(14, 24, 40, .12);
-}
-.feedback-proof img,
 .feedback-gallery img {
   display: block;
   width: 100%;
