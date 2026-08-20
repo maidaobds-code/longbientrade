@@ -611,6 +611,7 @@ address a { color: var(--white); text-decoration-color: var(--cyan); }
 .quality-section {
   position: relative;
   background: #f7faf9;
+  padding-bottom: clamp(90px, 10vw, 140px);
 }
 .quality-section::after {
   content: "★★★★★";
@@ -665,7 +666,7 @@ address a { color: var(--white); text-decoration-color: var(--cyan); }
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: 1.2fr .85fr .95fr;
-  grid-auto-rows: 190px;
+  grid-auto-rows: 150px;
   gap: 0;
   align-items: start;
   margin-top: 8px;
@@ -695,7 +696,7 @@ address a { color: var(--white); text-decoration-color: var(--cyan); }
 .review-card.featured {
   grid-row: span 2;
   z-index: 5;
-  min-height: 390px;
+  min-height: 305px;
   transform: rotate(-1.4deg);
   border: 3px solid var(--gold);
 }
@@ -713,24 +714,24 @@ address a { color: var(--white); text-decoration-color: var(--cyan); }
 }
 .review-card.product-proof {
   z-index: 4;
-  transform: translate(-18px, 32px) rotate(1.3deg);
+  transform: translate(-10px, 20px) rotate(1deg);
 }
 .review-card:nth-child(3) {
   z-index: 3;
-  transform: translate(-34px, 8px) rotate(-.8deg);
+  transform: translate(-18px, 6px) rotate(-.6deg);
 }
 .review-card:nth-child(4) {
   z-index: 2;
-  transform: translate(18px, -20px) rotate(.7deg);
+  transform: translate(10px, -10px) rotate(.5deg);
 }
 .review-card.wide {
   grid-column: span 2;
   z-index: 4;
-  transform: translate(-22px, -2px) rotate(-.4deg);
+  transform: translate(-12px, 4px) rotate(-.3deg);
 }
 .review-card:nth-child(6) {
   z-index: 2;
-  transform: translate(-8px, -18px) rotate(1deg);
+  transform: translate(-4px, -8px) rotate(.6deg);
 }
 .capacity-section {
   display: grid;
@@ -961,7 +962,7 @@ address a { color: var(--white); text-decoration-color: var(--cyan); }
   .feedback-layout { grid-template-columns: 1fr; }
   .feedback-collage {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-auto-rows: 220px;
+    grid-auto-rows: 180px;
     gap: 12px;
   }
   .review-card,
@@ -1002,5 +1003,5 @@ address a { color: var(--white); text-decoration-color: var(--cyan); }
   .feedback-gallery,
   .feedback-collage { grid-template-columns: 1fr; }
   .feedback-gallery { grid-auto-rows: 220px; }
-  .feedback-collage { grid-auto-rows: 260px; }
+  .feedback-collage { grid-auto-rows: 210px; }
 }
