@@ -500,43 +500,44 @@ address a { color: var(--white); text-decoration-color: var(--cyan); }
 
 .language-switcher {
   position: fixed;
-  right: 18px;
-  bottom: 76px;
+  right: 14px;
+  bottom: 72px;
   z-index: 40;
   display: grid;
   justify-items: end;
-  gap: 8px;
+  gap: 6px;
 }
 .language-toggle,
 .language-menu button {
-  min-height: 40px;
-  padding: 9px 12px;
+  min-height: 34px;
+  padding: 7px 10px;
   color: var(--ink);
   background: rgba(255,255,255,.96);
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: 999px;
   box-shadow: 0 12px 28px rgba(14, 24, 40, .12);
+  font-size: 12px;
+  font-weight: 800;
 }
 .language-toggle {
-  min-width: 86px;
-  font-weight: 800;
+  min-width: 44px;
 }
 .language-menu {
   position: absolute;
   right: 0;
-  bottom: 50px;
+  bottom: 42px;
   display: grid;
-  gap: 6px;
-  padding: 8px;
+  gap: 5px;
+  padding: 6px;
   background: rgba(14,24,40,.9);
   border: 1px solid rgba(255,255,255,.18);
-  border-radius: 8px;
+  border-radius: 18px;
   box-shadow: 0 18px 42px rgba(14, 24, 40, .24);
 }
 .language-menu button {
-  min-width: 112px;
+  min-width: 42px;
   box-shadow: none;
-  text-align: left;
+  text-align: center;
 }
 .language-menu button.active {
   color: var(--white);

@@ -6,9 +6,9 @@ const languageMenu = document.querySelector(".language-menu");
 const languageCurrent = document.querySelector(".language-current");
 const languageButtons = document.querySelectorAll("[data-lang]");
 const languageNames = {
-  ja: "日本語",
-  en: "English",
-  vi: "Tiếng Việt",
+  ja: "JA",
+  en: "EN",
+  vi: "VI",
 };
 const translations = {
   en: {
