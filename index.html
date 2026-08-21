@@ -13,6 +13,23 @@
 
       gtag('config', 'AW-16660676528');
     </script>
+    <!-- Event snippet for Lượt xem trang conversion page -->
+    <script>
+      function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof(url) != 'undefined') {
+            window.location = url;
+          }
+        };
+        gtag('event', 'conversion', {
+          'send_to': 'AW-16660676528/OaKNCObhl8sZELD_tog-',
+          'value': 1.0,
+          'currency': 'JPY',
+          'event_callback': callback
+        });
+        return false;
+      }
+    </script>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
