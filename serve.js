@@ -10,10 +10,17 @@ const types = {
   ".png": "image/png",
   ".jpg": "image/jpeg",
   ".jpeg": "image/jpeg",
+  ".jfif": "image/jpeg",
 };
 
 http
   .createServer((req, res) => {
+    if (req.method !== "GET" && req.method !== "HEAD") {
+      res.writeHead(405);
+      res.end("Method not allowed");
+      return;
+    }
+
     let pathname = decodeURIComponent(req.url.split("?")[0]);
     if (pathname === "/") pathname = "/index.html";
 

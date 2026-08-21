@@ -17,19 +17,27 @@ let currentLanguage = "ja";
 const formMessages = {
   ja: {
     missing: "必須項目をすべて入力してください。",
-    opening: "メール作成画面を開いています。内容をご確認のうえ送信してください。",
+    opening: "送信しています...",
+    success: "送信しました。担当者よりご連絡いたします。",
+    error: "送信できませんでした。時間をおいて再度お試しください。",
   },
   en: {
     missing: "Please complete all required fields.",
-    opening: "Opening your email app. Please review the message and send it.",
+    opening: "Sending...",
+    success: "Your message has been sent. Our team will contact you soon.",
+    error: "The message could not be sent. Please try again later.",
   },
   vi: {
     missing: "Vui lòng nhập đầy đủ các mục bắt buộc.",
-    opening: "Đang mở ứng dụng email. Vui lòng kiểm tra nội dung rồi gửi.",
+    opening: "Đang gửi...",
+    success: "Đã gửi thông tin. Chúng tôi sẽ liên hệ lại sớm.",
+    error: "Chưa gửi được thông tin. Vui lòng thử lại sau.",
   },
   ko: {
     missing: "필수 항목을 모두 입력해 주세요.",
-    opening: "이메일 작성 화면을 여는 중입니다. 내용을 확인한 후 보내 주세요.",
+    opening: "전송 중...",
+    success: "문의가 전송되었습니다. 담당자가 곧 연락드리겠습니다.",
+    error: "문의 전송에 실패했습니다. 잠시 후 다시 시도해 주세요.",
   },
 };
 const translations = {
@@ -623,7 +631,7 @@ window.addEventListener("scroll", () => {
 });
 
 if (contactForm) {
-  contactForm.addEventListener("submit", (event) => {
+  contactForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const formData = new FormData(contactForm);
@@ -639,27 +647,51 @@ if (contactForm) {
       return;
     }
 
-    const subject = `Website inquiry from ${name}`;
-    const body = [
-      "Website contact form",
-      "",
-      `Name: ${name}`,
-      `Phone: ${phone}`,
-      `Email: ${email}`,
-      "",
-      "Message:",
-      message,
-    ].join("\n");
-    const mailtoUrl = `mailto:longbientrade@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
     if (contactStatus) {
       contactStatus.textContent = formMessages[currentLanguage]?.opening || formMessages.ja.opening;
     }
 
-    if (typeof gtag_report_conversion === "function") {
-      gtag_report_conversion(mailtoUrl);
-    } else {
-      window.location.href = mailtoUrl;
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    if (submitButton) submitButton.disabled = true;
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: formData.get("access_key"),
+          subject: formData.get("subject"),
+          name,
+          phone,
+          email,
+          message,
+          botcheck: formData.get("botcheck"),
+        }),
+      });
+
+      const result = await response.json();
+      if (!response.ok || !result.success) throw new Error("Contact request failed");
+
+      contactForm.reset();
+      if (contactStatus) {
+        contactStatus.textContent = formMessages[currentLanguage]?.success || formMessages.ja.success;
+      }
+      if (typeof gtag === "function") {
+        gtag("event", "conversion", {
+          send_to: "AW-16660676528/OaKNCObhl8sZELD_tog-",
+          value: 1.0,
+          currency: "JPY",
+        });
+      }
+    } catch (error) {
+      if (contactStatus) {
+        contactStatus.textContent = formMessages[currentLanguage]?.error || formMessages.ja.error;
+      }
+    } finally {
+      if (submitButton) submitButton.disabled = false;
     }
   });
 }

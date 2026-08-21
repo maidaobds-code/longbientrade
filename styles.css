@@ -466,6 +466,9 @@ address a { color: var(--white); text-decoration-color: var(--cyan); }
   border-radius: 8px;
   box-shadow: 0 18px 42px rgba(0, 0, 0, .18);
 }
+.botcheck {
+  display: none;
+}
 .contact-form-card h3 {
   margin: 0;
   color: var(--blue);
