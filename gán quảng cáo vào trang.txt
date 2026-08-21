@@ -35,3 +35,10 @@ function gtag_report_conversion(url) {
 }
 </script>
 
+
+
+Đã sửa sang Web3Forms xong.
+Bây giờ form sẽ gửi trực tiếp tới:
+https://api.web3forms.com/submit
+với access key:
+f0927fc3-2760-42d1-998b-37710ca6987a
