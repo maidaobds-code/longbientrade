@@ -457,6 +457,57 @@ address {
 }
 address strong { color: var(--gold); font-size: 26px; }
 address a { color: var(--white); text-decoration-color: var(--cyan); }
+.contact-form-card {
+  display: grid;
+  gap: 14px;
+  padding: 20px;
+  color: var(--ink);
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, .18);
+}
+.contact-form-card h3 {
+  margin: 0;
+  color: var(--blue);
+}
+.contact-form-card label {
+  display: grid;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 800;
+}
+.contact-form-card input,
+.contact-form-card textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 11px 12px;
+  color: var(--ink);
+  background: #f7faf9;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font: inherit;
+  font-weight: 500;
+}
+.contact-form-card textarea {
+  resize: vertical;
+  line-height: 1.5;
+}
+.contact-form-card input:focus,
+.contact-form-card textarea:focus {
+  outline: 3px solid rgba(23, 92, 165, .18);
+  border-color: var(--blue);
+}
+.contact-form-card .btn {
+  width: 100%;
+  justify-content: center;
+}
+.form-status {
+  min-height: 20px;
+  margin: 0;
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 700;
+}
 .contact-card {
   margin-top: 18px;
   padding: 18px;
@@ -942,6 +993,10 @@ address a { color: var(--white); text-decoration-color: var(--cyan); }
   grid-template-columns: minmax(260px, .9fr) minmax(260px, 1.1fr);
   gap: 18px;
 }
+.contact-form-card {
+  grid-column: 2;
+  grid-row: 1;
+}
 .company-contact {
   grid-column: 1;
   grid-row: 1;
@@ -996,7 +1051,7 @@ address a { color: var(--white); text-decoration-color: var(--cyan); }
   position: relative;
   min-height: 360px;
   grid-column: 2;
-  grid-row: 1 / span 2;
+  grid-row: 2 / span 2;
   overflow: hidden;
   padding: 24px;
   background: #e9eef0;
@@ -1104,6 +1159,7 @@ address a { color: var(--white); text-decoration-color: var(--cyan); }
   }
   .feedback-gallery .wide { grid-row: auto; }
   .company-contact,
+  .contact-form-card,
   .line-card,
   .map-card,
   .interpreter-card {

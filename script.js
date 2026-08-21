@@ -5,11 +5,32 @@ const languageToggle = document.querySelector(".language-toggle");
 const languageMenu = document.querySelector(".language-menu");
 const languageCurrent = document.querySelector(".language-current");
 const languageButtons = document.querySelectorAll("[data-lang]");
+const contactForm = document.querySelector(".contact-form");
+const contactStatus = document.querySelector(".form-status");
 const languageNames = {
   ja: "JA",
   en: "EN",
   vi: "VI",
   ko: "KO",
+};
+let currentLanguage = "ja";
+const formMessages = {
+  ja: {
+    missing: "必須項目をすべて入力してください。",
+    opening: "メール作成画面を開いています。内容をご確認のうえ送信してください。",
+  },
+  en: {
+    missing: "Please complete all required fields.",
+    opening: "Opening your email app. Please review the message and send it.",
+  },
+  vi: {
+    missing: "Vui lòng nhập đầy đủ các mục bắt buộc.",
+    opening: "Đang mở ứng dụng email. Vui lòng kiểm tra nội dung rồi gửi.",
+  },
+  ko: {
+    missing: "필수 항목을 모두 입력해 주세요.",
+    opening: "이메일 작성 화면을 여는 중입니다. 내용을 확인한 후 보내 주세요.",
+  },
 };
 const translations = {
   ja: {
@@ -169,6 +190,12 @@ const translations = {
     "貴社が、釣り針、釣り仕掛け、その他関連する釣具製品の海外OEMパートナーまたは製造委託先をお探しでしたら、ぜひ弊社にご相談ください。": "If your company is looking for an overseas OEM partner or manufacturing contractor for fishing hooks, fishing rigs, or related tackle products, please contact us.",
     "特に、既存の設計、仕様・配合、または生産工程をお持ちの製品について、弊社では製品サンプル、見積書、生産能力およびOEM生産に関する詳細情報をご提供し、貴社のご検討・ご評価をサポートいたします。": "For products with existing designs, specifications, formulations, or production processes, we can provide samples, quotations, production capacity details, and OEM production information to support your review and evaluation.",
     "多言語対応窓口": "Multilingual Contact Desk",
+    "お問い合わせフォーム": "Contact Form",
+    "お名前": "Name",
+    "電話番号": "Phone number",
+    "メールアドレス": "Email address",
+    "お問い合わせ内容": "Message",
+    "送信する": "Send",
     "弊社には、日本語・英語・中国語・韓国語など、各言語に対応可能なスタッフが在籍しております。": "Our company has staff who can support multiple languages, including Japanese, English, Chinese, and Korean.",
     "日本市場とのご連絡、通訳、業務サポートなどにつきましても、内容に応じて適切な担当者が対応いたします。": "For communication with the Japanese market, interpretation, and business support, the appropriate staff member will assist according to your needs.",
     "ご不明な点やご相談がございましたら、どうぞお気軽にお問い合わせください。": "If you have any questions or would like to discuss anything, please feel free to contact us.",
@@ -329,6 +356,12 @@ const translations = {
     "貴社が、釣り針、釣り仕掛け、その他関連する釣具製品の海外OEMパートナーまたは製造委託先をお探しでしたら、ぜひ弊社にご相談ください。": "Nếu quý công ty đang tìm đối tác OEM nước ngoài hoặc đơn vị gia công cho lưỡi câu, bộ rig câu và các sản phẩm đồ câu liên quan, vui lòng liên hệ với chúng tôi.",
     "特に、既存の設計、仕様・配合、または生産工程をお持ちの製品について、弊社では製品サンプル、見積書、生産能力およびOEM生産に関する詳細情報をご提供し、貴社のご検討・ご評価をサポートいたします。": "Đặc biệt với sản phẩm đã có thiết kế, thông số, công thức hoặc quy trình sản xuất, chúng tôi có thể cung cấp mẫu, báo giá, năng lực sản xuất và thông tin OEM chi tiết để hỗ trợ quý công ty đánh giá.",
     "多言語対応窓口": "Bộ phận hỗ trợ đa ngôn ngữ",
+    "お問い合わせフォーム": "Biểu mẫu liên hệ",
+    "お名前": "Họ tên",
+    "電話番号": "Số điện thoại",
+    "メールアドレス": "Email",
+    "お問い合わせ内容": "Nội dung cần trao đổi",
+    "送信する": "Gửi",
     "弊社には、日本語・英語・中国語・韓国語など、各言語に対応可能なスタッフが在籍しております。": "Công ty chúng tôi có đội ngũ nhân viên có thể hỗ trợ nhiều ngôn ngữ như tiếng Nhật, tiếng Anh, tiếng Trung và tiếng Hàn.",
     "日本市場とのご連絡、通訳、業務サポートなどにつきましても、内容に応じて適切な担当者が対応いたします。": "Đối với việc liên lạc với thị trường Nhật Bản, phiên dịch và hỗ trợ nghiệp vụ, nhân viên phù hợp sẽ phụ trách tùy theo nội dung công việc.",
     "ご不明な点やご相談がございましたら、どうぞお気軽にお問い合わせください。": "Nếu quý khách có thắc mắc hoặc cần trao đổi, xin đừng ngần ngại liên hệ với chúng tôi.",
@@ -490,6 +523,12 @@ const translations = {
     "貴社が、釣り針、釣り仕掛け、その他関連する釣具製品の海外OEMパートナーまたは製造委託先をお探しでしたら、ぜひ弊社にご相談ください。": "귀사가 낚싯바늘, 낚시 채비 및 관련 낚시용품의 해외 OEM 파트너 또는 제조 위탁처를 찾고 계신다면 당사에 문의해 주십시오.",
     "特に、既存の設計、仕様・配合、または生産工程をお持ちの製品について、弊社では製品サンプル、見積書、生産能力およびOEM生産に関する詳細情報をご提供し、貴社のご検討・ご評価をサポートいたします。": "특히 기존 설계, 사양·배합 또는 생산 공정을 보유한 제품에 대해 당사는 제품 샘플, 견적서, 생산 능력 및 OEM 생산 관련 상세 정보를 제공하여 귀사의 검토와 평가를 지원합니다.",
     "多言語対応窓口": "다국어 대응 창구",
+    "お問い合わせフォーム": "문의 양식",
+    "お名前": "성함",
+    "電話番号": "전화번호",
+    "メールアドレス": "이메일 주소",
+    "お問い合わせ内容": "문의 내용",
+    "送信する": "보내기",
     "弊社には、日本語・英語・中国語・韓国語など、各言語に対応可能なスタッフが在籍しております。": "당사에는 일본어, 영어, 중국어, 한국어 등 각 언어에 대응 가능한 직원이 재직하고 있습니다.",
     "日本市場とのご連絡、通訳、業務サポートなどにつきましても、内容に応じて適切な担当者が対応いたします。": "일본 시장과의 연락, 통역, 업무 지원 등에 대해서도 내용에 따라 적절한 담당자가 대응합니다.",
     "ご不明な点やご相談がございましたら、どうぞお気軽にお問い合わせください。": "궁금한 점이나 상담이 필요하시면 언제든지 편하게 문의해 주십시오.",
@@ -583,8 +622,51 @@ window.addEventListener("scroll", () => {
   topButton.classList.toggle("show", window.scrollY > 700);
 });
 
+if (contactForm) {
+  contactForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(contactForm);
+    const name = formData.get("name")?.toString().trim();
+    const phone = formData.get("phone")?.toString().trim();
+    const email = formData.get("email")?.toString().trim();
+    const message = formData.get("message")?.toString().trim();
+
+    if (!name || !phone || !email || !message) {
+      if (contactStatus) {
+        contactStatus.textContent = formMessages[currentLanguage]?.missing || formMessages.ja.missing;
+      }
+      return;
+    }
+
+    const subject = `Website inquiry from ${name}`;
+    const body = [
+      "Website contact form",
+      "",
+      `Name: ${name}`,
+      `Phone: ${phone}`,
+      `Email: ${email}`,
+      "",
+      "Message:",
+      message,
+    ].join("\n");
+    const mailtoUrl = `mailto:longbientrade@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    if (contactStatus) {
+      contactStatus.textContent = formMessages[currentLanguage]?.opening || formMessages.ja.opening;
+    }
+
+    if (typeof gtag_report_conversion === "function") {
+      gtag_report_conversion(mailtoUrl);
+    } else {
+      window.location.href = mailtoUrl;
+    }
+  });
+}
+
 function applyLanguage(lang) {
   const nextLang = languageNames[lang] ? lang : "ja";
+  currentLanguage = nextLang;
   collectTextNodes();
   document.documentElement.lang = nextLang;
   document.title =
